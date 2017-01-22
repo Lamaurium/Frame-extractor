@@ -17,6 +17,7 @@ class Image():
         self.filles = []
         self.manip = False
         self.active = False
+        self.color = []
 
     def click(self,event, x, y, flags, param):
         if event == cv2.EVENT_LBUTTONDOWN:
@@ -59,6 +60,27 @@ class Image():
         for i in variable.list_image:
             print i.active
 
+    def colorInfo(self):
+        couleur = ('r','g','b')
+        print "aze"
+        for j in self.filles:
+            print "aze"
+            tmp = []
+            for i,col in enumerate(couleur):
+                hist = cv2.calcHist([j[0]],[i],None,[256],[0,256])
+                tmp.append((col, hist))
+            self.color.append(tmp)
+            tmp = []
+        print self.color
+
+    def colorInfoLoc(self, val):
+        couleur = ('r','g','b')
+        tmp = []
+        for i,col in enumerate(couleur):
+            hist = cv2.calcHist([val[0]],[i],None,[256],[0,256])
+            tmp.append((col, hist))
+        return tmp
+
     def affImage(self):
         cv2.imshow(self.nom, self.image)
         cv2.setMouseCallback(self.nom, self.click)
@@ -92,10 +114,17 @@ class Image():
         return (image_out, str(nom))
 
 
-    def exportData():
-        print "<image>"
-        print "<nom>" + str(self.nom) + "</nom>"
-        print "<taille>" + str(self.image.shape) + "</taille>"
+    def exportData(self):
+        print "<images classe='mere' nom='" + str(self.nom) + "'>"
+        for i in self.filles:
+            print "\t<image classe='fille' nom='" + str(i[1]) + "'>"
+            print "\t\t<taille>" + str(i[0].shape) + "</taille>"
+            list_val = self.colorInfoLoc(i)
+            for j in list_val:
+                print "<couleur col='" + str(j[0]) + "'>" + str(j[1]) + "</couleur>"
+            print "\t</image>"
+
+        print "</images>"
 
     def rect(self):
         top, bot, gauche, droite = 10000, 0, 10000, 0

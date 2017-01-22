@@ -31,6 +31,15 @@ def detection():
         if i.active == True:
             i.process()
 
+def export():
+    for i in variable.list_image:
+        if i.active == True:
+            i.exportData()
+
+def color():
+    for i in variable.list_image:
+        if i.active == True:
+            i.colorInfo()
 
 j = 0
 
@@ -46,7 +55,8 @@ filemenu.add_command(label="Exit", command=root.quit)
 
 fonctionmenu = Menu(menubar, tearoff=0)
 fonctionmenu.add_command(label="Corner detections", command=detection)
-fonctionmenu.add_command(label="Corner setting", command=donothing)
+fonctionmenu.add_command(label="Data exportation", command=export)
+fonctionmenu.add_command(label="Color extraction", command=color)
 
 helpmenu = Menu(menubar, tearoff=0)
 helpmenu.add_command(label="Help Index", command=donothing)
