@@ -20,7 +20,7 @@ def donothing():
 def openfile():
     global j
     j += 1
-    root.filename = tkFileDialog.askopenfilename(initialdir = "/Users/Aoda/Documents/Cours/17007424/Python/",title = "Select file",filetypes = (("png files","*.png"),("all files","*.*")))
+    root.filename = tkFileDialog.askopenfilename(initialdir = "/Users/Aoda/Documents/Cours/Frame-extractor/",title = "Select file",filetypes = (("png files","*.png"),("all files","*.*")))
     fond = img.Image("bob" + str(j), cv2.imread(root.filename))
     variable.list_image.append(fond)
     for i in variable.list_image:
