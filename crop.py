@@ -41,6 +41,15 @@ def color():
         if i.active == True:
             i.colorInfo()
 
+def text():
+    for i in variable.list_image:
+        if i.active == True:
+            i.getText()
+
+def tmp():
+    v = Tk()
+    v.mainloop()
+
 j = 0
 
 root = Tk()
@@ -57,9 +66,10 @@ fonctionmenu = Menu(menubar, tearoff=0)
 fonctionmenu.add_command(label="Corner detections", command=detection)
 fonctionmenu.add_command(label="Data exportation", command=export)
 fonctionmenu.add_command(label="Color extraction", command=color)
+fonctionmenu.add_command(label="Text extraction", command=text)
 
 helpmenu = Menu(menubar, tearoff=0)
-helpmenu.add_command(label="Help Index", command=donothing)
+helpmenu.add_command(label="Help Index", command=tmp)
 helpmenu.add_command(label="About...", command=donothing)
 
 menubar.add_cascade(label="File", menu=filemenu)

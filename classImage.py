@@ -5,6 +5,8 @@ import cv2
 import math
 import numpy as np
 import variable
+import pytesseract
+import PIL.Image
 
 class Image():
 
@@ -42,13 +44,16 @@ class Image():
                         self.rect()
                         self.pos = []
                 print self.pos
-
-
-
             self.affImage()
 
     def getNom(self):
         return self.nom
+
+    def getText(self):
+        for j in self.filles:
+            cv2.imwrite(str(j[1])+".png",j[0])
+            print(pytesseract.image_to_string(PIL.Image.open(str(j[1])+".png")))
+
 
     def desactive(self):
         self.active = False
